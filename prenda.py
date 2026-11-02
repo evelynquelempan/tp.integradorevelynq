@@ -1,13 +1,15 @@
+import math
+
 class Prenda:
     def __init__(self, codigo, nombre, categoria, talle, precio, stock):
-        if not codigo or not codigo.strip():
-            raise ValueError("El código no puede estar vacío")
-        if not nombre or not nombre.strip():
-            raise ValueError("El nombre no puede estar vacío")
-        if not categoria or not categoria.strip():
-            raise ValueError("La categoría no puede estar vacía")
-        if not talle or not talle.strip():
-            raise ValueError("El talle no puede estar vacío")
+        if not isinstance(codigo, str) or not codigo.strip():
+            raise ValueError("El código debe ser un texto y no puede estar vacío")
+        if not isinstance(nombre, str) or not nombre.strip():
+            raise ValueError("El nombre debe ser un texto y no puede estar vacío")
+        if not isinstance(categoria, str) or not categoria.strip():
+            raise ValueError("La categoría debe ser un texto y no puede estar vacío")
+        if not isinstance(talle, str) or not talle.strip():
+            raise ValueError("El talle debe ser un texto y no puede estar vacío")
 
         self._codigo = codigo
         self._nombre = nombre
@@ -38,6 +40,8 @@ class Prenda:
 
     @precio.setter
     def precio(self, nuevo_precio):
+        if isinstance(nuevo_precio, bool) or not isinstance(nuevo_precio, (int, float)):
+            raise ValueError("El precio debe ser un número")
         if nuevo_precio < 0:
             raise ValueError("El precio no puede ser negativo")
         self._precio = nuevo_precio
