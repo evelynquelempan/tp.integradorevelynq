@@ -16,6 +16,34 @@ def mostrar_menu_admin():
     print("========================================")
 
 
+def _pedir_precio(mensaje):
+    while True:
+        texto = input(mensaje).strip().replace(",", ".")
+        try:
+            valor = float(texto)
+        except ValueError:
+            print("Error: ingresá un número válido (ejemplo: 8500 o 8500.50).")
+            continue
+        if valor < 0:
+            print("Error: el precio no puede ser negativo.")
+            continue
+        return valor
+
+
+def _pedir_stock(mensaje):
+    while True:
+        texto = input(mensaje).strip()
+        try:
+            valor = int(texto)
+        except ValueError:
+            print("Error: ingresá un número entero (ejemplo: 10).")
+            continue
+        if valor < 0:
+            print("Error: el stock no puede ser negativo.")
+            continue
+        return valor
+
+
 def _pedir_e_insertar(catalogo, prendas):
     print("\n--- INSERTAR NUEVA PRENDA ---")
     try:
@@ -23,8 +51,8 @@ def _pedir_e_insertar(catalogo, prendas):
         nombre = input("Ingresá el nombre: ")
         categoria = input("Ingresá la categoría: ")
         talle = input("Ingresá el talle: ")
-        precio = float(input("Ingresá el precio: "))
-        stock = int(input("Ingresá el stock: "))
+        precio = _pedir_precio("Ingresá el precio: ")
+        stock = _pedir_stock("Ingresá el stock: ")
         nueva = Prenda(codigo, nombre, categoria, talle, precio, stock)
         return catalogo.insertar_prenda(prendas, nueva)
     except ValueError as error:
