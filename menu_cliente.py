@@ -9,12 +9,11 @@ def mostrar_menu_cliente():
     print("3. Buscar por código")
     print("4. Buscar por nombre")
     print("5. Ver talles disponibles de una prenda")
-    print("6. Ver mis últimas búsquedas")
     print("0. Cerrar sesión")
     print("==================================")
 
 
-def menu_cliente(catalogo, prendas, historial, explorar_categorias=None):
+def menu_cliente(catalogo, prendas, explorar_categorias=None):
     while True:
         mostrar_menu_cliente()
         opcion = input("Elegí una opción: ").strip()
@@ -30,16 +29,13 @@ def menu_cliente(catalogo, prendas, historial, explorar_categorias=None):
                 print(prenda)
 
         elif opcion == "3":
-            buscar_codigo_ui(catalogo, prendas, historial)
+            buscar_codigo_ui(catalogo, prendas)
 
         elif opcion == "4":
-            buscar_nombre_ui(catalogo, prendas, historial)
+            buscar_nombre_ui(catalogo, prendas)
 
         elif opcion == "5":
-            talles_disponibles_ui(catalogo, prendas, historial)
-
-        elif opcion == "6":
-            historial.mostrar()
+            talles_disponibles_ui(catalogo, prendas)
 
         elif opcion == "0":
             print("Sesión cerrada.")
