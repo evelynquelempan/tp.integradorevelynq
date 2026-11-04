@@ -145,77 +145,81 @@ def mostrar_menu():
 
 # ============ MENU PRINCIPAL  ======================
 
-while True:
-    mostrar_menu()
-    opcion = input("Elegí una opción: ")
-    print("Opción ingresada:", repr(opcion))
+def menu_principal():
+    while True:
+        mostrar_menu()
+        opcion = input("Elegí una opción: ")
 
-    if opcion == "1":
-        print(f"\nPrendas cargadas: {len(prendas)}")
+        if opcion == "1":
+            print(f"\nPrendas cargadas: {len(prendas)}")
 
-        for prenda in prendas:
-            print(prenda)
-            
-    elif opcion == "2":
-        print("\n--- INSERTAR NUEVA PRENDA ---")
-
-        try:
-            codigo = input("Ingresá el código: ")
-            nombre = input("Ingresá el nombre: ")
-            categoria = input("Ingresá la categoría: ")
-            talle = input("Ingresá el talle: ")
-            precio = float(input("Ingresá el precio: "))
-            stock = int(input("Ingresá el stock: "))
-
-            nueva_prenda = Prenda(
-                codigo, nombre, categoria, talle, precio, stock
-            )
-
-            insertar_prenda(prendas, nueva_prenda)
-
-        except ValueError as error:
-            print(f"Error: {error}")
-
-    elif opcion == "3":
-        print("\n--- BUSCAR PRENDA POR CÓDIGO ---")
-        codigo_buscado = input("Ingresá el código de la prenda: ")
-        prenda, comparaciones = buscar_por_codigo(prendas, codigo_buscado)
-
-        if prenda:
-            print("Prenda encontrada:")
-            print(prenda)
-        else:
-            print("No se encuentra la prenda con ese código.")
-
-        print(f"Comparaciones realizadas: {comparaciones}")
-
-    elif opcion == "4":
-        print("\n--- BUSCAR PRENDA POR NOMBRE ---")
-        nombre_buscado = input("Ingresá el nombre de la prenda: ")
-        encontradas, comparaciones = buscar_por_nombre(prendas, nombre_buscado)
-
-        if encontradas:
-            print(f"Se encontraron {len(encontradas)} prendas con ese nombre:")
-            for prenda in encontradas:
+            for prenda in prendas:
                 print(prenda)
+
+        elif opcion == "2":
+            print("\n--- INSERTAR NUEVA PRENDA ---")
+
+            try:
+                codigo = input("Ingresá el código: ")
+                nombre = input("Ingresá el nombre: ")
+                categoria = input("Ingresá la categoría: ")
+                talle = input("Ingresá el talle: ")
+                precio = float(input("Ingresá el precio: "))
+                stock = int(input("Ingresá el stock: "))
+
+                nueva_prenda = Prenda(
+                    codigo, nombre, categoria, talle, precio, stock
+                )
+
+                insertar_prenda(prendas, nueva_prenda)
+
+            except ValueError as error:
+                print(f"Error: {error}")
+
+        elif opcion == "3":
+            print("\n--- BUSCAR PRENDA POR CÓDIGO ---")
+            codigo_buscado = input("Ingresá el código de la prenda: ")
+            prenda, comparaciones = buscar_por_codigo(prendas, codigo_buscado)
+
+            if prenda:
+                print("Prenda encontrada:")
+                print(prenda)
+            else:
+                print("No se encuentra la prenda con ese código.")
+
+            print(f"Comparaciones realizadas: {comparaciones}")
+
+        elif opcion == "4":
+            print("\n--- BUSCAR PRENDA POR NOMBRE ---")
+            nombre_buscado = input("Ingresá el nombre de la prenda: ")
+            encontradas, comparaciones = buscar_por_nombre(prendas, nombre_buscado)
+
+            if encontradas:
+                print(f"Se encontraron {len(encontradas)} prendas con ese nombre:")
+                for prenda in encontradas:
+                    print(prenda)
+            else:
+                print("No se encontraron prendas con ese nombre.")
+
+            print(f"Comparaciones realizadas: {comparaciones}")
+
+        elif opcion == "5":
+            print("\n--- MODIFICAR PRENDA ---")
+            codigo_buscado = input("Ingresá el código de la prenda  que queres modificar: ")
+            modificar_prenda(prendas, codigo_buscado)
+
+        elif opcion == "6":
+            print("\n--- ELIMINAR PRENDA ---")
+            codigo_buscado = input("Ingresá el código de la prenda que queres eliminar: ")
+            eliminar_prenda(prendas, codigo_buscado)
+
+        elif opcion == "7":
+            print("Saliendo del menú...")
+            break
+
         else:
-            print("No se encontraron prendas con ese nombre.")
+            print("Opción incorrecta. Por favor, elegí una opción válida.")
 
-        print(f"Comparaciones realizadas: {comparaciones}")
 
-    elif opcion == "5":
-        print("\n--- MODIFICAR PRENDA ---")
-        codigo_buscado = input("Ingresá el código de la prenda  que queres modificar: ")
-        modificar_prenda(prendas, codigo_buscado)
-
-    elif opcion == "6":
-        print("\n--- ELIMINAR PRENDA ---")
-        codigo_buscado = input("Ingresá el código de la prenda que queres eliminar: ")
-        eliminar_prenda(prendas, codigo_buscado)
-
-    elif opcion == "7":
-        print("Saliendo del menú...")
-        break
-
-    else:
-        print("Opción incorrecta. Por favor, elegí una opción válida.")
+if __name__ == "__main__":
+    menu_principal()
