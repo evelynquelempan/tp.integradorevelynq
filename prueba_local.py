@@ -8,10 +8,20 @@
 # 1: - No se puede iniciar sesion sin antes salir del menu principal de MAIN, ya que el menu principal tiene un bucle infinito que no permite salir de el hasta que se cierre el programa. 
 #  Esto hace que no se pueda probar el inicio de sesion y el menu de administrador y cliente sin tener que pasar por el menu principal.
 
+#Solución: agregar al final de main.py
+#  if __name__ == "__main__":
+#    menu_principal()
+#  y poner el menu dentro de una funcion menu_principal() para que se pueda llamar desde otro archivo y no se ejecute al importar main.py
+
+
+
 # 2: En el menu principal de MAIN, al buscar una prenda debe coincidir el nombre exacto. Al buscar por una palabra parcial, por ejemplo "Jean" no figuran. 
+
+#Solución: Cambiar         if prenda.nombre.lower() == nombre_buscado.lower():     por        if nombre_buscado.lower() in prenda.nombre.lower(): en la funcion buscar_prenda_por_nombre(nombre_buscado, prendas) de main.py
 
 # 3: Al ingresar el precio para modificarlo y no se ingresa ningun valor, el programa no lo toma como 0, sino que lo toma como un string vacio y da error.
 
+#Solución: Cambiar en la funcion modificar_precio_prenda(prenda) de menu_admin.py o agregar una funcion auxiliar. 
 
 
 
