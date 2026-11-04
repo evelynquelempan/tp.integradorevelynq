@@ -5,29 +5,28 @@
 
 #Problemas encontrados:
 
-# 1: - No se puede iniciar sesion sin antes salir del menu principal de MAIN, ya que el menu principal tiene un bucle infinito que no permite salir de el hasta que se cierre el programa. 
-#  Esto hace que no se pueda probar el inicio de sesion y el menu de administrador y cliente sin tener que pasar por el menu principal.
+# 1: - No se puede iniciar sesion sin antes salir del menu principal de MAIN y dará errror al intentar ingresar ya que el menu principal tiene un bucle. 
+#  Esto hace que no se pueda probar el inicio de sesion de admin y el menu de administrador y cliente sin tener que pasar por el menu principal. 
 
-#Solución: agregar al final de main.py
+#Explicacion de Calude: Te lo explico claro porque el problema de fondo es este: el menú de main.py está dentro de un while True suelto, no es una función, y Python no tiene forma de llamar a un bloque suelto desde otro archivo sin ejecutarlo entero (o sin copiarlo).
+
+#Solución 1: agregar al final de main.py
 #  if __name__ == "__main__":
 #    menu_principal()
 #  y poner el menu dentro de una funcion menu_principal() para que se pueda llamar desde otro archivo y no se ejecute al importar main.py
 
+#Solucion 2: si no toco main.py, debo crear un menu nuevo para admin sin utilizar el menu de main.py. 
 
 
-# 2: En el menu principal de MAIN, al buscar una prenda debe coincidir el nombre exacto. Al buscar por una palabra parcial, por ejemplo "Jean" no figuran. 
+# 3: En el menu principal de MAIN, al buscar una prenda debe coincidir el nombre exacto. Al buscar por una palabra parcial, por ejemplo "Jean" no figuran. 
 
 #Solución: Cambiar         if prenda.nombre.lower() == nombre_buscado.lower():     por        if nombre_buscado.lower() in prenda.nombre.lower(): en la funcion buscar_prenda_por_nombre(nombre_buscado, prendas) de main.py
 
-# 3: Al ingresar el precio para modificarlo y no se ingresa ningun valor, el programa no lo toma como 0, sino que lo toma como un string vacio y da error.
-
-#Solución: Cambiar en la funcion modificar_precio_prenda(prenda) de menu_admin.py o agregar una funcion auxiliar. 
 
 
 
 import main as catalogo   
 from autenticacion import iniciar_sesion
-from historial import HistorialBusquedas
 from menu_admin import menu_admin
 from menu_cliente import menu_cliente
 
@@ -40,8 +39,7 @@ def mostrar_menu_inicio():
 
 
 def main():
-    historial = HistorialBusquedas()
-
+    
     while True:
         mostrar_menu_inicio()
         opcion = input("Elegí una opción: ").strip()
@@ -54,9 +52,9 @@ def main():
                 break
 
             if usuario.es_administrador():
-                menu_admin(catalogo, catalogo.prendas, historial)
+                menu_admin(catalogo, catalogo.prendas)
             else:
-                menu_cliente(catalogo, catalogo.prendas, historial)
+                menu_cliente(catalogo, catalogo.prendas)
 
         elif opcion == "0":
             print("Saliendo del sistema...")
