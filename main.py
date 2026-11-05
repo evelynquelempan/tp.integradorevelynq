@@ -1,4 +1,5 @@
-from prenda import Prenda
+from prenda import Prenda 
+from arbol_busqueda import ArbolBusqueda
 
 # =======================LISTA DE PRENDAS==========================================
 
@@ -35,6 +36,23 @@ prendas = [
     Prenda("P030", "Sweater lana", "Sweaters", "L", 37000, 3),
 ]
 
+# ========== CREACIÓN DEL ÁRBOL DE BÚSQUEDA ==========
+
+arbol = ArbolBusqueda()
+
+for prenda in prendas:
+    arbol.insertar(prenda)
+
+
+# ========== ACTUALIZAR ÁRBOL ==========
+
+def actualizar_arbol():
+    global arbol
+
+    arbol = ArbolBusqueda()
+
+    for prenda in prendas:
+        arbol.insertar(prenda)
 
 # ========================================== BUSCAR PRENDA POR CODIGO ==========================================
 
@@ -140,7 +158,26 @@ def mostrar_menu():
     print("5. Modificar una prenda")
     print("6. Eliminar una prenda")
     print("7. Salir")
+    print("8. Buscar por código (árbol)")
     print("====================================")
+
+# COMPARACIÓN ENTRE LISTA Y ÁRBOL 
+
+codigo_prueba = "P010"
+
+# Búsqueda en la lista
+prenda_lista, comparaciones_lista = buscar_por_codigo(
+    prendas, codigo_prueba
+)
+
+# Búsqueda en el árbol
+prenda_arbol, comparaciones_arbol = arbol.buscar(codigo_prueba)
+
+# Mostrar resultados
+print("\n--- COMPARACIÓN DE BÚSQUEDAS ---")
+print("Código buscado:", codigo_prueba)
+print("Comparaciones en la lista:", comparaciones_lista)
+print("Comparaciones en el árbol:", comparaciones_arbol)
 
 
 # ============ MENU PRINCIPAL  ======================
@@ -148,7 +185,6 @@ def mostrar_menu():
 while True:
     mostrar_menu()
     opcion = input("Elegí una opción: ")
-    print("Opción ingresada:", repr(opcion))
 
     if opcion == "1":
         print(f"\nPrendas cargadas: {len(prendas)}")
@@ -172,6 +208,7 @@ while True:
             )
 
             insertar_prenda(prendas, nueva_prenda)
+            actualizar_arbol()
 
         except ValueError as error:
             print(f"Error: {error}")
@@ -207,15 +244,32 @@ while True:
         print("\n--- MODIFICAR PRENDA ---")
         codigo_buscado = input("Ingresá el código de la prenda  que queres modificar: ")
         modificar_prenda(prendas, codigo_buscado)
+        actualizar_arbol()
 
     elif opcion == "6":
         print("\n--- ELIMINAR PRENDA ---")
         codigo_buscado = input("Ingresá el código de la prenda que queres eliminar: ")
         eliminar_prenda(prendas, codigo_buscado)
+        actualizar_arbol()
 
     elif opcion == "7":
         print("Saliendo del menú...")
         break
+
+    elif opcion == "8":
+        print("\n--- BUSCAR PRENDA EN EL ÁRBOL ---")
+
+        codigo_buscado = input("Ingresá el código de la prenda: ")
+
+        prenda, comparaciones = arbol.buscar(codigo_buscado)
+
+        if prenda:
+            print("\nPrenda encontrada:")
+            print(prenda)
+        else:
+            print("No se encontró una prenda con ese código.")
+
+        print(f"Comparaciones realizadas: {comparaciones}")
 
     else:
         print("Opción incorrecta. Por favor, elegí una opción válida.")
