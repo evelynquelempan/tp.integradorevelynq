@@ -91,7 +91,7 @@ class ArbolBusqueda:
             return None, 0
 
         # Iniciamos la búsqueda desde la raíz
-        return self.raiz.buscar(clave)
+        return self.raiz.buscar(clave.upper())
 
     # Método que devuelve las prendas ordenadas por código
     def inorden(self):

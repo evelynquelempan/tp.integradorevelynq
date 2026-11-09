@@ -1,19 +1,33 @@
 from prenda import Prenda
 from arbol_busqueda import ArbolBusqueda
+from arbol_categorias import construir_arbol_categorias, explorar_categorias
+from persistencia import cargar_prendas, guardar_prendas
 import catalogo
 
-# ==================== CONFIGURACIÓN DEL ÁRBOL ====================
+# CARGA DE DATOS Y ÁRBOLES 
+#  Cargamos las prendas desde JSON 
+catalogo.prendas = cargar_prendas(prendas_iniciales=catalogo.prendas)
 
 arbol = ArbolBusqueda()
+arbol_cat = None
 
-def actualizar_arbol():
-    global arbol
+def sincronizar_todo():
+    #Actualiza el árbol BST, el árbol de categorías y guarda en datos.json
+    global arbol, arbol_cat
+    
+    # Reconstruye el BST
     arbol = ArbolBusqueda()
     for prenda in catalogo.prendas:
         arbol.insertar(prenda)
 
-# Cargamos el árbol con las 30 prendas de la lista
-actualizar_arbol()
+    # Reconstruye el árbol de categorías
+    arbol_cat = construir_arbol_categorias(catalogo.prendas)
+
+    # Guarda los cambios en el archivo JSON
+    guardar_prendas(catalogo.prendas)
+
+# Sincronización inicial al abrir el programa
+sincronizar_todo()
 
 
 # ==================== MENÚ PRINCIPAL ====================
@@ -21,13 +35,14 @@ actualizar_arbol()
 def mostrar_menu():
     print("\n========== MENÚ PRINCIPAL ==========")
     print("1. Listar prendas")
-    print("2. Insertar una prenda")
-    print("3. Buscar por código")
-    print("4. Buscar por nombre")
-    print("5. Modificar una prenda")
-    print("6. Eliminar una prenda")
-    print("7. Buscar por código (árbol)")
-    print("8. Comparar búsqueda (Lista vs Árbol)")
+    print("2. Explorar por categorías")
+    print("3. Listar prendas ordenadas por código (árbol inorden)")
+    print("4. Buscar por código")
+    print("5. Buscar por nombre")
+    print("6. Insertar una prenda")
+    print("7. Modificar una prenda")
+    print("8. Eliminar una prenda")
+    print("9. Comparar búsqueda (Lista vs Árbol)")
     print("0. Salir")
     print("====================================")
 
@@ -35,7 +50,7 @@ def mostrar_menu():
 def menu_principal():
     while True:
         mostrar_menu()
-        opcion = input("Elegí una opción: ")
+        opcion = input("Elegí una opción: ").strip()
 
         if opcion == "1":
             print(f"\nPrendas cargadas: {len(catalogo.prendas)}")
@@ -43,28 +58,18 @@ def menu_principal():
                 print(prenda)
 
         elif opcion == "2":
-            print("\n--- INSERTAR NUEVA PRENDA ---")
-            try:
-                codigo = input("Ingresá el código: ")
-                nombre = input("Ingresá el nombre: ")
-                categoria = input("Ingresá la categoría: ")
-                talle = input("Ingresá el talle: ")
-                precio = float(input("Ingresá el precio: "))
-                stock = int(input("Ingresá el stock: "))
-
-                nueva_prenda = Prenda(
-                    codigo, nombre, categoria, talle, precio, stock
-                )
-
-                if catalogo.insertar_prenda(catalogo.prendas, nueva_prenda):
-                    actualizar_arbol()
-
-            except ValueError as error:
-                print(f"Error: {error}")
+            # Explorar el árbol de categorías: Invierno, Verano, Otros y sus subcategorías
+            explorar_categorias(arbol_cat)
 
         elif opcion == "3":
+            # Listar prendas ordenadas por código usando el recorrido inorden del árbol
+            print("\n--- PRENDAS ORDENADAS POR CÓDIGO (INORDEN) ---")
+            for prenda in arbol.inorden():
+                print(prenda)
+
+        elif opcion == "4":
             print("\n--- BUSCAR PRENDA POR CÓDIGO ---")
-            codigo_buscado = input("Ingresá el código de la prenda: ")
+            codigo_buscado = input("Ingresá el código de la prenda: ").strip()
             prenda, comparaciones = catalogo.buscar_por_codigo(catalogo.prendas, codigo_buscado)
 
             if prenda:
@@ -73,11 +78,11 @@ def menu_principal():
             else:
                 print("No se encuentra la prenda con ese código.")
 
-            print(f"Comparaciones realizadas: {comparaciones}")
+            print(f"Comparaciones realizadas en la lista: {comparaciones}")
 
-        elif opcion == "4":
+        elif opcion == "5":
             print("\n--- BUSCAR PRENDA POR NOMBRE ---")
-            nombre_buscado = input("Ingresá el nombre de la prenda: ")
+            nombre_buscado = input("Ingresá el nombre de la prenda: ").strip()
             encontradas, comparaciones = catalogo.buscar_por_nombre(catalogo.prendas, nombre_buscado)
 
             if encontradas:
@@ -89,40 +94,47 @@ def menu_principal():
 
             print(f"Comparaciones realizadas: {comparaciones}")
 
-        elif opcion == "5":
-            print("\n--- MODIFICAR PRENDA ---")
-            codigo_buscado = input("Ingresá el código de la prenda que querés modificar: ")
-            if catalogo.modificar_prenda(catalogo.prendas, codigo_buscado):
-                actualizar_arbol()
-
         elif opcion == "6":
-            print("\n--- ELIMINAR PRENDA ---")
-            codigo_buscado = input("Ingresá el código de la prenda que querés eliminar: ")
-            if catalogo.eliminar_prenda(catalogo.prendas, codigo_buscado):
-                actualizar_arbol()
+            print("\n--- INSERTAR NUEVA PRENDA ---")
+            try:
+                codigo = input("Ingresá el código: ").strip()
+                nombre = input("Ingresá el nombre: ").strip()
+                categoria = input("Ingresá la categoría: ").strip()
+                talle = input("Ingresá el talle: ").strip()
+                precio = float(input("Ingresá el precio: "))
+                stock = int(input("Ingresá el stock: "))
+
+                nueva_prenda = Prenda(
+                    codigo, nombre, categoria, talle, precio, stock
+                )
+
+                if catalogo.insertar_prenda(catalogo.prendas, nueva_prenda):
+                    sincronizar_todo()
+
+            except ValueError as error:
+                print(f"Error: {error}")
 
         elif opcion == "7":
-            print("\n--- BUSCAR PRENDA EN EL ÁRBOL ---")
-            codigo_buscado = input("Ingresá el código de la prenda: ")
-            prenda, comparaciones = arbol.buscar(codigo_buscado)
-
-            if prenda:
-                print("Prenda encontrada:")
-                print(prenda)
-            else:
-                print("No se encontró una prenda con ese código.")
-
-            print(f"Comparaciones realizadas en el árbol: {comparaciones}")
+            print("\n--- MODIFICAR PRENDA ---")
+            codigo_buscado = input("Ingresá el código de la prenda que querés modificar: ").strip()
+            if catalogo.modificar_prenda(catalogo.prendas, codigo_buscado):
+                sincronizar_todo()
 
         elif opcion == "8":
+            print("\n--- ELIMINAR PRENDA ---")
+            codigo_buscado = input("Ingresá el código de la prenda que querés eliminar: ").strip()
+            if catalogo.eliminar_prenda(catalogo.prendas, codigo_buscado):
+                sincronizar_todo()
+
+        elif opcion == "9":
             print("\n--- COMPARACIÓN DE BÚSQUEDAS ---")
-            codigo_prueba = input("Ingresá un código para comparar (ej: P010): ")
+            codigo_prueba = input("Ingresá un código para comparar (ej: P010): ").strip()
 
             # Búsqueda en la lista
-            _, comp_lista = catalogo.buscar_por_codigo(catalogo.prendas, codigo_prueba)
+            prenda, comp_lista = catalogo.buscar_por_codigo(catalogo.prendas, codigo_prueba)
 
             # Búsqueda en el árbol
-            _, comp_arbol = arbol.buscar(codigo_prueba)
+            prenda_arbol, comp_arbol = arbol.buscar(codigo_prueba)
 
             print("Código buscado:", codigo_prueba)
             print("Comparaciones en la lista:", comp_lista)

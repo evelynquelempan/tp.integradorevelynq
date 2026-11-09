@@ -1,0 +1,250 @@
+[
+    {
+        "codigo": "P016",
+        "nombre": "Vestido lino",
+        "categoria": "Vestidos",
+        "talle": "S",
+        "precio": 28000.0,
+        "stock": 3
+    },
+    {
+        "codigo": "P008",
+        "nombre": "Buzo oversize",
+        "categoria": "Buzos",
+        "talle": "M",
+        "precio": 38000.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P025",
+        "nombre": "Top basico morley",
+        "categoria": "Tops",
+        "talle": "S",
+        "precio": 9500.0,
+        "stock": 9
+    },
+    {
+        "codigo": "P004",
+        "nombre": "Jean wide-leg",
+        "categoria": "Pantalones",
+        "talle": "38",
+        "precio": 30000.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P012",
+        "nombre": "Campera de jean",
+        "categoria": "Camperas",
+        "talle": "L",
+        "precio": 45000.0,
+        "stock": 3
+    },
+    {
+        "codigo": "P020",
+        "nombre": "Camisa blanca",
+        "categoria": "Camisas",
+        "talle": "M",
+        "precio": 19500.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P028",
+        "nombre": "Sweater lana",
+        "categoria": "Sweaters",
+        "talle": "S",
+        "precio": 37000.0,
+        "stock": 2
+    },
+    {
+        "codigo": "P001",
+        "nombre": "Remera basica blanca",
+        "categoria": "Remeras",
+        "talle": "S",
+        "precio": 8500.0,
+        "stock": 10
+    },
+    {
+        "codigo": "P002",
+        "nombre": "Remera basica negra",
+        "categoria": "Remeras",
+        "talle": "M",
+        "precio": 8500.0,
+        "stock": 8
+    },
+    {
+        "codigo": "P003",
+        "nombre": "Remera basica marron",
+        "categoria": "Remeras",
+        "talle": "L",
+        "precio": 8500.0,
+        "stock": 6
+    },
+    {
+        "codigo": "P005",
+        "nombre": "Jean recto",
+        "categoria": "Pantalones",
+        "talle": "40",
+        "precio": 30000.0,
+        "stock": 7
+    },
+    {
+        "codigo": "P006",
+        "nombre": "Jean mom",
+        "categoria": "Pantalones",
+        "talle": "42",
+        "precio": 25000.0,
+        "stock": 4
+    },
+    {
+        "codigo": "P007",
+        "nombre": "Buzo canguro",
+        "categoria": "Buzos",
+        "talle": "S",
+        "precio": 32000.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P009",
+        "nombre": "Buzo premium",
+        "categoria": "Buzos",
+        "talle": "L",
+        "precio": 40000.0,
+        "stock": 2
+    },
+    {
+        "codigo": "P010",
+        "nombre": "Campera de jean",
+        "categoria": "Camperas",
+        "talle": "S",
+        "precio": 45000.0,
+        "stock": 4
+    },
+    {
+        "codigo": "P011",
+        "nombre": "Campera de jean",
+        "categoria": "Camperas",
+        "talle": "M",
+        "precio": 45000.0,
+        "stock": 6
+    },
+    {
+        "codigo": "P013",
+        "nombre": "Pollera de jean",
+        "categoria": "Polleras",
+        "talle": "S",
+        "precio": 18000.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P014",
+        "nombre": "Pollera de jean",
+        "categoria": "Polleras",
+        "talle": "M",
+        "precio": 18000.0,
+        "stock": 4
+    },
+    {
+        "codigo": "P015",
+        "nombre": "Pollera de jean",
+        "categoria": "Polleras",
+        "talle": "L",
+        "precio": 18000.0,
+        "stock": 2
+    },
+    {
+        "codigo": "P017",
+        "nombre": "Vestido lino",
+        "categoria": "Vestidos",
+        "talle": "M",
+        "precio": 28000.0,
+        "stock": 6
+    },
+    {
+        "codigo": "P018",
+        "nombre": "Vestido lino",
+        "categoria": "Vestidos",
+        "talle": "L",
+        "precio": 28000.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P019",
+        "nombre": "Camisa blanca",
+        "categoria": "Camisas",
+        "talle": "S",
+        "precio": 19500.0,
+        "stock": 7
+    },
+    {
+        "codigo": "P021",
+        "nombre": "Camisa blanca",
+        "categoria": "Camisas",
+        "talle": "L",
+        "precio": 19500.0,
+        "stock": 3
+    },
+    {
+        "codigo": "P022",
+        "nombre": "Short lino",
+        "categoria": "Shorts",
+        "talle": "S",
+        "precio": 15000.0,
+        "stock": 8
+    },
+    {
+        "codigo": "P023",
+        "nombre": "Short lino",
+        "categoria": "Shorts",
+        "talle": "M",
+        "precio": 15000.0,
+        "stock": 6
+    },
+    {
+        "codigo": "P024",
+        "nombre": "Short lino",
+        "categoria": "Shorts",
+        "talle": "L",
+        "precio": 15000.0,
+        "stock": 4
+    },
+    {
+        "codigo": "P026",
+        "nombre": "Top basico morley",
+        "categoria": "Tops",
+        "talle": "M",
+        "precio": 9500.0,
+        "stock": 7
+    },
+    {
+        "codigo": "P027",
+        "nombre": "Top basico morley",
+        "categoria": "Tops",
+        "talle": "L",
+        "precio": 9500.0,
+        "stock": 5
+    },
+    {
+        "codigo": "P029",
+        "nombre": "Sweater lana",
+        "categoria": "Sweaters",
+        "talle": "M",
+        "precio": 37000.0,
+        "stock": 4
+    },
+    {
+        "codigo": "P030",
+        "nombre": "Sweater lana",
+        "categoria": "Sweaters",
+        "talle": "L",
+        "precio": 37000.0,
+        "stock": 3
+    },
+    {
+        "codigo": "P031",
+        "nombre": "Remera Oversize",
+        "categoria": "Remeras",
+        "talle": "L",
+        "precio": 15500.0,
+        "stock": 13
+    }
+]
