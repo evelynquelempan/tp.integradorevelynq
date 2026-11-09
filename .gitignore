@@ -1,0 +1,9 @@
+# Archivos compilados y temporales de Python
+__pycache__/
+*.py[cod]
+
+# Carpetas de editores
+.vscode/
+.idea/ 
+
+

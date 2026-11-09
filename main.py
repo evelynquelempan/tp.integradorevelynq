@@ -1,4 +1,3 @@
-# main.py
 from prenda import Prenda
 from arbol_busqueda import ArbolBusqueda
 import catalogo
