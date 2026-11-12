@@ -1,6 +1,9 @@
 import json
 import os
 from prenda import Prenda
+#========================= FUNCIONES DE PERSISTENCIA =================================
+#este archivo contiene las funciones para guardar y cargar los datos de las prendas en un archivo JSON
+
 ARCHIVO_DATOS = "datos.json"
 def guardar_prendas(prendas, ruta=ARCHIVO_DATOS):
     datos = []
@@ -20,6 +23,8 @@ def guardar_prendas(prendas, ruta=ARCHIVO_DATOS):
     except Exception as e:
         print(f"Error al guardar los datos en {ruta}: {e}")
         return False
+
+
 def cargar_prendas(ruta=ARCHIVO_DATOS, prendas_iniciales=None):
     if not os.path.exists(ruta):
         if prendas_iniciales:
