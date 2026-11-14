@@ -1,4 +1,4 @@
-from prenda import Prenda
+from modelos.prenda import Prenda 
 
 # ======================= LISTA DE PRENDAS =======================
 

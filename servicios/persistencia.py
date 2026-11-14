@@ -1,10 +1,11 @@
 import json
 import os
-from prenda import Prenda
+from modelos.prenda import Prenda
 #========================= FUNCIONES DE PERSISTENCIA =================================
 #este archivo contiene las funciones para guardar y cargar los datos de las prendas en un archivo JSON
 
-ARCHIVO_DATOS = "datos.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #establece la ruta base del proyecto, que es la carpeta principal donde se encuentra el archivo main.py
+ARCHIVO_DATOS = os.path.join(BASE_DIR, "datos", "datos.json") 
 def guardar_prendas(prendas, ruta=ARCHIVO_DATOS):
     datos = []
     for p in prendas:

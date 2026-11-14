@@ -246,5 +246,21 @@
         "talle": "L",
         "precio": 15500.0,
         "stock": 13
+    },
+    {
+        "codigo": "p032",
+        "nombre": "Pantalon Baggy Hombre",
+        "categoria": "Pantalones",
+        "talle": "46",
+        "precio": 34000.0,
+        "stock": 10
+    },
+    {
+        "codigo": "p033",
+        "nombre": "vestido casual",
+        "categoria": "otros",
+        "talle": "m",
+        "precio": 15900.0,
+        "stock": 5
     }
 ]

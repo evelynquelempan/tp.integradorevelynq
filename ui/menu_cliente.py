@@ -1,5 +1,5 @@
-from busquedas_ui import (buscar_codigo_ui, buscar_nombre_ui,
-                          talles_disponibles_ui)
+from ui.busquedas_ui import (buscar_codigo_ui, buscar_nombre_ui, talles_disponibles_ui)
+from estructuras.arbol_categorias import explorar_categorias
 
 
 def mostrar_menu_cliente():
@@ -13,16 +13,14 @@ def mostrar_menu_cliente():
     print("==================================")
 
 
-def menu_cliente(catalogo, prendas, explorar_categorias=None):
+def menu_cliente(catalogo, prendas, arbol_cat):
     while True:
         mostrar_menu_cliente()
         opcion = input("Elegí una opción: ").strip()
 
         if opcion == "1":
-            if explorar_categorias:
-                explorar_categorias(prendas)
-            else:
-                print("Explorar por categorías: función pendiente.")
+            explorar_categorias(arbol_cat)
+            
 
         elif opcion == "2":
             for prenda in prendas:
