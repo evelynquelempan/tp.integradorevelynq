@@ -51,6 +51,8 @@ class Prenda:
     def precio(self):
         return self._precio
 
+
+# usos de setter para validar y establecer valores de atributos privados.
     @precio.setter
     def precio(self, nuevo_precio):
         if isinstance(nuevo_precio, bool) or not isinstance(nuevo_precio, (int, float)):

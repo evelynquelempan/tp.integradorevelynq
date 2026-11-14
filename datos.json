@@ -4,8 +4,8 @@
         "nombre": "Vestido lino",
         "categoria": "Vestidos",
         "talle": "S",
-        "precio": 28000.0,
-        "stock": 3
+        "precio": 35000.0,
+        "stock": 10
     },
     {
         "codigo": "P008",
@@ -28,8 +28,8 @@
         "nombre": "Jean wide-leg",
         "categoria": "Pantalones",
         "talle": "38",
-        "precio": 30000.0,
-        "stock": 5
+        "precio": 35000.0,
+        "stock": 14
     },
     {
         "codigo": "P012",

@@ -36,7 +36,7 @@ prendas = [
 ]
 
 
-
+#Funciones para buscar, insertar, modificar y eliminar prendas en la lista de prendas.
 # ================= BUSCAR POR CODIGO =================
 
 def buscar_por_codigo(prendas, cod_buscado):
