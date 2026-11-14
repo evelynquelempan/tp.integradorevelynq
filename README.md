@@ -1,48 +1,147 @@
 # Grupo 9 - TP INTEGRADOR DE ESTRUCTURAS DE DATOS: Tienda de Ropa. 
 
+
 ## Descripción
 
-Sistema de consola para gestionar un catálogo y stock de una tienda de ropa. 
-Desarrollado como Trabajo Práctico de la materia **Estructuras de Datos** de la Tecnicatura Universitaria.
+Sistema de consola desarrollado para gestionar el catálogo y el stock de una tienda de ropa.
+
+Este proyecto corresponde al Trabajo Práctico Integrador de la materia **Estructuras de Datos**, de la Tecnicatura Universitaria.
+
+El sistema permite administrar las prendas del catálogo, realizar búsquedas, explorar categorías, consultar talles disponibles y gestionar usuarios con diferentes permisos de acceso.
 
 ## Integrantes
 
-| Evelyn Quelempan      |
-| Ulises Palacios       | 
-| Ricardo Estrada       | 
-| Marilyn Tufillaro     | 
+- Evelyn Quelempan
+- Ulises Palacios
+- Ricardo Estrada
+- Marilyn Tufillaro
 
+## Estructuras de datos y funcionalidades implementadas
 
-El programa implementa **desde cero** las siguientes estructuras de datos:
- - Modelo de Dominio con POO y Encapsulamiento: Clase **Prenda** con atributos privados, propiedades **@property** y validaciones de tipos y rangos.
- - Estructura Lineal (Lista): Catálogo base con 30 prendas de prueba iniciales y operaciones de inserción, búsqueda secuencial por código y nombre con conteo de comparaciones, modificación y eliminación. 
- - Árbol General (n-ario): Jerarquía de categorías (Indumentaria → Temporada → Tipo de prenda) implementado con 
- **NodoCategoria** para explorar el catálogo por niveles de navegación.
- - Árbol Binario de Búsqueda (BST): Implementado con NodoBST para búsqueda eficiente por código de prenda  y recorrido Inorden para listar los elementos ordenados automáticamente.
- - Cola (FIFO): Historial de las últimas búsquedas del usuario con capacidad máxima declarada , descartando la más antigua.
- - Persistencia en JSON: Carga y guardado automático del catálogo completo en datos.json al iniciar y tras cada modificación.
- - Funcionalidad propia del tema: Consulta de talles disponibles con stock agrupados por prenda.
+El proyecto implementa las siguientes estructuras de datos y conceptos:
 
-## Estructura del proyecto 
+- **Programación Orientada a Objetos y Encapsulamiento:** clase `Prenda`, con atributos privados, propiedades `@property` y validaciones.
+- **Lista:** catálogo de prendas con 30 registros iniciales y operaciones de inserción, búsqueda secuencial por código y nombre, modificación y eliminación.
+- **Árbol General (N-ario):** organización jerárquica de categorías que permite explorar el catálogo por niveles.
+- **Árbol Binario de Búsqueda (BST):** permite insertar y buscar prendas por código, además de listar los elementos ordenados mediante recorrido inorden.
+- **Cola (FIFO):** historial de las últimas 5 búsquedas realizadas. Al superar esa capacidad, se elimina la búsqueda más antigua.
+- **Persistencia en JSON:** carga automática de los datos al iniciar el programa y guardado de los cambios realizados en el catálogo.
 
-├── main.py               # Menú principal y orquestación del sistema
-├── prenda.py             # Clase Prenda con encapsulamiento y setters validados
-├── catalogo.py           # Datos iniciales (30 prendas) y operaciones CRUD en lista
-├── arbol_busqueda.py     # Árbol Binario de Búsqueda (BST) y recorrido inorden
-├── arbol_categorias.py   # Árbol General (N-ario) para navegación por categorías
-├── persistencia.py       # Carga y guardado en archivo datos.json
-├── busquedas_ui.py       # Consulta de talles disponibles y búsquedas auxiliares
-├── usuario.py            # Clase Usuario con roles (administrador / cliente)
-├── autenticacion.py      # Módulo de login y validación de credenciales
-├── menu_cliente.py       # Menú con permisos de solo lectura para clientes
-├── datos.json            # Base de datos persistente en formato JSON
-├── .gitignore            # Archivos ignorados por Git (__pycache__, temporales)
-└── README.md             # Documentación del proyecto
+### Funcionalidades del sistema
 
-## Cómo ejecutar
+**Administrador:**
+- Listar prendas.
+- Explorar por categorías.
+- Listar prendas ordenadas por código.
+- Buscar prendas por código o nombre.
+- Insertar nuevas prendas.
+- Modificar prendas existentes.
+- Eliminar prendas.
+- Comparar la cantidad de comparaciones entre la búsqueda en lista y en árbol.
+- Consultar talles disponibles.
+- Consultar el historial de búsquedas.
+
+**Cliente:**
+- Explorar el catálogo por categorías.
+- Consultar todas las prendas, sus precios y stock.
+- Buscar prendas por código o nombre.
+- Consultar talles disponibles.
+
+## Estructura del proyecto
+
+```text
+tp integrador/
+│
+├── main.py
+│
+├── datos/
+│   ├── __init__.py
+│   ├── catalogo.py
+│   └── datos.json
+│
+├── estructuras/
+│   ├── __init__.py
+│   ├── arbol_busqueda.py
+│   └── arbol_categorias.py
+│
+├── modelos/
+│   ├── __init__.py
+│   ├── prenda.py
+│   └── usuario.py
+│
+├── servicios/
+│   ├── __init__.py
+│   ├── autenticacion.py
+│   └── persistencia.py
+│
+├── ui/
+│   ├── __init__.py
+│   ├── busquedas_ui.py
+│   ├── menu_admin.py
+│   └── menu_cliente.py
+│
+├── .gitignore
+└── README.md
+```
+
+## Cómo ejecutar el proyecto
+
+### 1. Requisitos previos
+
+- Tener Python instalado.
+- Tener Git instalado (opcional, si se desea clonar el repositorio).
+
+### 2. Descargar el proyecto
+
+Clonar el repositorio desde una terminal:
 
 ```bash
-# Desde la carpeta tp.integradorevelynq
+git clone https://github.com/evelynquelempan/tp.integradorevelynq.git
+```
 
+### 3. Abrir la carpeta del proyecto
+
+Ingresar a la carpeta principal del proyecto:
+
+```bash
+cd tp.integradorevelynq
+```
+
+Abrirla con Visual Studio Code o utilizar la terminal desde esa ubicación.
+
+### 4. Ejecutar el programa
+
+Desde la carpeta principal, ejecutar:
+
+```bash
 python main.py
 ```
+
+En algunos equipos puede ser necesario utilizar:
+
+```bash
+py main.py
+```
+
+### 5. Iniciar sesión
+
+El sistema cuenta con dos usuarios de prueba:
+
+| Usuario | Contraseña | Rol |
+|---|---|---|
+| admin | admin123 | Administrador |
+| cliente | cliente123 | Cliente |
+
+Según el rol seleccionado, se mostrará el menú correspondiente.
+
+## Persistencia de datos
+
+Los datos del catálogo se almacenan en el archivo `datos/datos.json`.
+
+Al iniciar el programa, se cargan los datos guardados. Cada vez que el administrador realiza una operación que modifica el catálogo, los cambios se guardan automáticamente para conservarlos entre ejecuciones.
+
+---
+
+**Trabajo Práctico Integrador - Estructuras de Datos**  
+**Grupo 9**
+
